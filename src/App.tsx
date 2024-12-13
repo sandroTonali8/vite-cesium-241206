@@ -1,7 +1,7 @@
 import { ConfigProvider } from 'antd'
-import Earth from './components/EarthInit'
+import EarthInit from './components/EarthInit'
 import Login from './components/Login'
-// import Loginbutton from './components/LoginButton'
+import StatsPanel from './components/StatsPanel'
 
 export default function App() {
   return (
@@ -11,10 +11,12 @@ export default function App() {
           colorPrimary: '#fc4c02'
         }
       }}>
-      <Earth>
-        <Login/>
-        {/* <Loginbutton/> */}
-      </Earth>
+      <EarthInit>
+        <StatsPanel>
+        </StatsPanel>
+        {/* <Login>
+        </Login> */}
+      </EarthInit>
     </ConfigProvider>
   )
 }
