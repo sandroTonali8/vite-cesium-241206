@@ -3,7 +3,7 @@ import { PropsWithChildren, useEffect, useRef, useState } from "react"
 import { styled } from 'styled-components'
 import { NavigatorPlugin } from "../utils/plugin-navigator"
 import { ArcGisMapServerImageryProvider, CesiumTerrainProvider, ImageryLayer, Rectangle } from 'cesium'
-import { earthquakeConfig } from './constants'
+import { earthquakeConfig, heightConfig } from './constants'
 import { addGeojsonByPrimitive } from './functions'
 import { WindData, WindLayer, WindLayerOptions } from "cesium-wind-layer"
 import { PageContainer, SwitchButton, dataConfigs, defaultOptions } from './constants'
@@ -55,7 +55,7 @@ export default function EarthInit({
     })
     earth.current = earcur
     earcur.usePlugin(new NavigatorPlugin())
-    // addGeojsonByPrimitive(earcur, '@/../public/earthquake.geojson', earthquakeConfig)
+    // addGeojsonByPrimitive(earcur, '@/../public/California_heat.geojson', heightConfig)
     // const windLayer = new WindLayer(earcur.viewer, windData, windLayerProps)
 
     CesiumTerrainProvider.fromIonAssetId(1).then(terrainProvider => {
@@ -188,7 +188,7 @@ export default function EarthInit({
   
   return (
     <PageContainer>
-      <SpeedQuery windLayer={windLayerRef.current} viewer={earth.current?.viewer} />
+      <SpeedQuery windLayer={windLayerRef.current} viewer={earth.current?.viewer ?? null} />
       <Div id='container'>
         <SwitchButton onClick={handleSwitchData}>
           Switch to {currentDataIndex === 0 ? 'Ocean' : 'Wind'} Data

@@ -32,6 +32,41 @@ export const earthquakeConfig: GeoJsonRenderConfig = {
   },
 }
 
+export const heightConfig: GeoJsonRenderConfig = {
+  type: 'polygon',
+  style: {
+    type: 'height',
+    config: {
+      field: 'est',
+      color: [
+        '#053061',
+        '#144c87',
+        '#2467a6',
+        '#3680b9',
+        '#5199c6',
+        '#75b2d4',
+        '#9ac8e0',
+        '#bcdaea',
+        '#d7e8f0',
+        '#ebeff1',
+        '#f6ece7',
+        '#fadfcf',
+        '#f9c8b0',
+        '#f3ac8e',
+        '#e88b6f',
+        '#d86755',
+        '#c64240',
+        '#ae2330',
+        '#8e0e26',
+        '#67001f',
+      ],
+      'section-type': 'natural',
+      'outline-color': 'transparent',
+      'height-range': [0, 500],
+    },
+  },
+}
+
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
