@@ -3,8 +3,8 @@ import { PropsWithChildren, useEffect, useRef, useState } from "react"
 import { styled } from 'styled-components'
 import { NavigatorPlugin } from "../utils/plugin-navigator"
 import { ArcGisMapServerImageryProvider, CesiumTerrainProvider, ImageryLayer, Rectangle } from 'cesium'
-import { earthquakeConfig, heightConfig } from './constants'
-import { addGeojsonByPrimitive } from './functions'
+// import { earthquakeConfig, heightConfig } from './constants'
+// import { addGeojsonByPrimitive } from './functions'
 import { WindData, WindLayer, WindLayerOptions } from "cesium-wind-layer"
 import { PageContainer, SwitchButton, dataConfigs, defaultOptions } from './constants'
 import { SpeedQuery } from './WindPanel/SpeedQuery'
