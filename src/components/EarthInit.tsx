@@ -55,7 +55,7 @@ export default function EarthInit({
     })
     earth.current = earcur
     earcur.usePlugin(new NavigatorPlugin())
-    // addGeojsonByPrimitive(earcur, '@/../public/California_heat.geojson', heightConfig)
+    // addGeojsonByPrimitive(earcur, '/California_heat.geojson', heightConfig)
     // const windLayer = new WindLayer(earcur.viewer, windData, windLayerProps)
 
     CesiumTerrainProvider.fromIonAssetId(1).then(terrainProvider => {

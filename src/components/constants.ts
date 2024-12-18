@@ -104,7 +104,7 @@ export const dataConfigs = {
       lineLength: { min: 50, max: 100 },
       particleHeight: 100,
     },
-    file: '@/../public/wind.json'
+    file: '/wind.json'
   },
   ocean: {
     options: {
@@ -117,7 +117,7 @@ export const dataConfigs = {
       lineLength: { min: 20, max: 50 },
       particleHeight: 10,
     },
-    file: '@/../public/ocean.json'
+    file: '/ocean.json'
   }
 }
 
