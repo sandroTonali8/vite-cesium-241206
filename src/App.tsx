@@ -1,6 +1,5 @@
 import { ConfigProvider } from 'antd'
 import EarthInit from './components/EarthInit'
-import Login from './components/Login'
 import StatsPanel from './components/StatsPanel'
 
 export default function App() {
@@ -14,8 +13,6 @@ export default function App() {
       <EarthInit>
         <StatsPanel>
         </StatsPanel>
-        {/* <Login>
-        </Login> */}
       </EarthInit>
     </ConfigProvider>
   )
