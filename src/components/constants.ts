@@ -67,6 +67,19 @@ export const heightConfig: GeoJsonRenderConfig = {
   },
 }
 
+export const geoJsonConfig: GeoJsonRenderConfig = {
+  type: "polygon",
+  style: {
+    type: "single",
+    config: {
+      color: "rgba(255,255,255,0)",
+      "outline-color": "black",
+      "outline-width": 1,
+      opacity: 0.5
+    }
+  }
+}
+
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -7,7 +7,9 @@ export async function addGeojsonByDataSource(
   url: string,
   config: GeoJsonRenderConfig,
 ) {
-  const dataSource: DataSource = await GeoJsonDataSource.load(url);
+  const dataSource: DataSource = await GeoJsonDataSource.load(url, {
+    clampToGround: false
+  });
   updateDataSourcePosition(dataSource);
   await renderGeoJson(dataSource, config);
   await earth.viewer.dataSources.add(dataSource);
