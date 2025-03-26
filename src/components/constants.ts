@@ -2,6 +2,7 @@ import { GeoJsonRenderConfig } from "cesium-extends"
 import { WindLayerOptions, WindLayer } from "cesium-wind-layer"
 import styled from "styled-components"
 import { colorSchemes } from './WindPanel/ColorTableInput'
+import { GeoJsonOptions } from './interfaces'
 
 export const earthquakeConfig: GeoJsonRenderConfig = {
   type: 'point',
@@ -75,9 +76,13 @@ export const geoJsonConfig: GeoJsonRenderConfig = {
       color: "rgba(255,255,255,0)",
       "outline-color": "black",
       "outline-width": 1,
-      opacity: 0.5
+      opacity: 0.4
     }
   }
+}
+
+export const GeoJsonDefaultOptions: Partial<GeoJsonOptions> = {
+  Transparency: geoJsonConfig.style?.config.opacity
 }
 
 export const PageContainer = styled.div`

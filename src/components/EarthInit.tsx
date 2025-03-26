@@ -2,12 +2,15 @@ import { Earth } from "dde-earth"
 import { PropsWithChildren, useEffect, useRef } from "react"
 import { styled } from 'styled-components'
 import { NavigatorPlugin } from "../utils/plugin-navigator"
-import { ArcGisMapServerImageryProvider, CesiumTerrainProvider, ImageryLayer, Rectangle, Ion, ScreenSpaceEventHandler, ScreenSpaceEventType, Cartesian2, Entity, Color, ConstantProperty } from 'cesium'
+import { ArcGisMapServerImageryProvider, CesiumTerrainProvider, ImageryLayer, Ion, ScreenSpaceEventHandler, ScreenSpaceEventType, Cartesian2, Entity, Color, ConstantProperty } from 'cesium'
 // import { WindData, WindLayer, WindLayerOptions } from "cesium-wind-layer"
-import { PageContainer, SwitchButton, dataConfigs, defaultOptions, geoJsonConfig, heightConfig, earthquakeConfig } from './constants'
+import { PageContainer, geoJsonConfig } from './constants'
 // import { SpeedQuery } from './WindPanel/SpeedQuery'
 // import { ControlPanel } from './WindPanel/ControlPanel'
-import { addGeojsonByDataSource, addGeojsonByPrimitive } from "./functions"
+import { addGeojsonByDataSource } from "./functions"
+// // import { TransparencyControl } from './GeoJsonPanel/TransparencyControl'
+// import { GeoJsonOptions } from './interfaces'
+// import { GeoJsonLayer } from "./class"
 
 Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhY2IzNzQzNi1iOTVkLTRkZjItOWVkZi1iMGUyYTUxN2Q5YzYiLCJpZCI6NTUwODUsImlhdCI6MTcyNTQyMDE4NX0.yHbHpszFexPrxX6_55y0RgNrHjBQNu9eYkW9cXKUTPk'
 
@@ -25,6 +28,7 @@ export default function EarthInit({
   children
 }: PropsWithChildren<EarthProps>) {
   const earth = useRef<Earth | null>(null)
+  // const geojsonLayerRef = useRef<GeoJsonLayer | null>(null)
   // const windLayerRef = useRef<WindLayer | null>(null)
   // const [, setIsWindLayerReady] = useState(false)
   // const windDataFiles = [dataConfigs.wind.file, dataConfigs.ocean.file]
@@ -34,6 +38,10 @@ export default function EarthInit({
   //   ...defaultOptions,
   //   ...dataConfigs.wind.options
   // } as WindLayerOptions)
+  // const [currentOptions, setCurrentOptions] = useState<GeoJsonOptions>({
+  //   ...GeoJsonDefaultOptions,
+  //   Transparency: GeoJsonDefaultOptions.Transparency ?? 1
+  // } as GeoJsonOptions)
 
   useEffect(() => {
     // let isComponentMounted = true
@@ -58,10 +66,71 @@ export default function EarthInit({
     earcur.usePlugin(new NavigatorPlugin())
     // addGeojsonByPrimitive(earcur, '/California_heat.geojson', heightConfig)
     // const windLayer = new WindLayer(earcur.viewer, windData, windLayerProps)
+    // const geojsonLayer = new GeoJsonLayer(earcur.viewer, geoJsonConfig.style?.config.opacity)
     addGeojsonByDataSource(earcur, '/Niger_and_Nigeria.geojson', geoJsonConfig).then(res => {
       earcur.viewer.zoomTo(res)
     })
 
+    addGeojsonByDataSource(earcur, '/Senegal_Basin.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Karoo_Basin.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Congo_basin.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Upper_Egypt_basin.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+    
+    addGeojsonByDataSource(earcur, '/Trias_Ghadames_basin.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Tunisia.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Panama.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Belgium.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Qatar.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Middle_East.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/India_plate.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Malaysia.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Thailand.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/Vietnam.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+
+    addGeojsonByDataSource(earcur, '/China.geojson', geoJsonConfig).then(res => {
+      earcur.viewer.zoomTo(res)
+    })
+    
     const handler = new ScreenSpaceEventHandler(earcur.viewer.scene.canvas)
     let highlightedEntity: Entity | null = null;
 
@@ -75,20 +144,88 @@ export default function EarthInit({
 
     handler.setInputAction((e: { position: Cartesian2 }) => {
       const pickedObj = earcur.viewer.scene.pick(e.position)
-      if (pickedObj && pickedObj.id.name === "Nigeria") {
-        window.open("https://nigerialex.geolex.org/index.php")
-      }
-      else if (pickedObj && pickedObj.id.name === "Niger") { 
-        window.open("https://nigerlex.geolex.org/")
+      if (pickedObj) {
+        console.log(pickedObj.id)
+        switch(pickedObj.id.name) {
+          case "Nigeria":
+            window.open("https://nigerialex.geolex.org/index.php")
+            break
+          case "Niger":
+            window.open("https://nigerlex.geolex.org/")
+            break
+          case "Senegal basin":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Senegal+Basin")
+            break
+          case "Karoo basin (simplified)":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Karoo+Basin")
+            break
+          case "Congo basin":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Central+Africa%3A+Congo+basin+General")
+            break
+          case "Upper Egypt basin":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Northern+Africa%3A+Upper+Egypt+basin")
+            break
+          case "Trias/Ghadames basin":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Northern+Africa%3A+Trias%2FGhadames+basin")
+            break
+          case "Tunisia":
+            window.open("https://africalex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=Northern+Africa%3A+Tunisia")
+            break
+          case "Panama":
+            window.open("https://panamalex.geolex.org/")
+            break
+          case "Belgium":
+            window.open("https://belgiumlex.geolex.org/index.php?search=&lithoSearch=&fossilSearch=&searchtype=Period&filterperiod=All&agefilterstart=&agefilterend=&filterprovince%5B%5D=All")
+            break
+          case "Qatar":
+            window.open("https://qatarlex.geolex.org/")
+            break
+          case "Middle East Simplified":
+            window.open("https://mideastlex.geolex.org/")
+            break
+          case "India plate simplified":
+            window.open("https://indplex.geolex.org/")
+            break
+          case "Malaysia":
+            window.open("https://malaylex.geolex.org/")
+            break
+          case "Thailand":
+            window.open("https://thailex.geolex.org/")
+            break
+          case "Vietnam":
+            window.open("https://vietlex.geolex.org/")
+            break
+          case "People's Republic of China":
+            window.open("https://chinalex.geolex.org/")
+            break
+          default:
+            break
+        }
       }
     }, ScreenSpaceEventType.LEFT_CLICK)
 
     handler.setInputAction((e: { endPosition: Cartesian2 }) => {
       const pickedObj = earcur.viewer.scene.pick(e.endPosition)
       if (pickedObj && pickedObj.id instanceof Entity) {
-        const entity = pickedObj.id; 
+        const entity = pickedObj.id
         // 仅处理特定实体（如"Nigeria"或"Niger"）
-        if (entity.name  === "Nigeria" || entity.name  === "Niger") {
+        if (entity.name  === "Nigeria" ||
+            entity.name  === "Niger" ||
+            entity.name === "Senegal basin" ||
+            entity.name === "Karoo basin (simplified)" ||
+            entity.name === "Congo basin" ||
+            entity.name === "Upper Egypt basin" ||
+            entity.name === "Trias/Ghadames basin" ||
+            entity.name === "Tunisia" ||
+            entity.name === "Panama" ||
+            entity.name === "Belgium" ||
+            entity.name === "Qatar" ||
+            entity.name === "Middle East Simplified" ||
+            entity.name === "India plate simplified" ||
+            entity.name === "Malaysia" ||
+            entity.name === "Thailand" ||
+            entity.name === "Vietnam" ||
+            entity.name === "People's Republic of China") {
           if (highlightedEntity !== entity) {
             resetHighlight(); // 恢复之前高亮
             highlightedEntity = entity;
@@ -116,6 +253,20 @@ export default function EarthInit({
     // Optional: Add exaggeration to make terrain features more visible
     // earcur.scene.verticalExaggeration = 2;
     // earcur.sceneModePicker.viewModel.duration = 0;
+    // const initGeojsonLayer = async () => {
+    //   const initialOptions = {
+    //     ...GeoJsonDefaultOptions
+    //   }
+    //   setCurrentOptions(initialOptions as GeoJsonOptions)
+    //   const layer = new GeoJsonLayer(earcur.viewer, geoJsonConfig.style?.config.opacity)
+    //   // layer.addEventListener('optionsChange', (options) => {
+    //   //   console.log('Options updated:', options);
+    //   //   // Handle options change
+    //   // })
+    //   geojsonLayerRef.current = layer
+    // }
+
+    // initGeojsonLayer()
     
     // const initWindLayer = async () => {
     //   try {
@@ -192,7 +343,7 @@ export default function EarthInit({
     }
   }, [])
 
-  // const handleOptionsChange = (changedOptions: Partial<WindLayerOptions>) => {
+  // const handleOptionsChange = (changedOptions: Partial<GeoJsonOptions>) => {
   //   setCurrentOptions({
   //     ...currentOptions,
   //     ...changedOptions
@@ -243,6 +394,11 @@ export default function EarthInit({
         </SwitchButton>
         <ControlPanel
           windLayer={windLayerRef.current}
+          initialOptions={currentOptions}
+          onOptionsChange={handleOptionsChange}
+        /> */}
+        {/* <TransparencyControl
+          geojsonLayer={geojsonLayerRef.current}
           initialOptions={currentOptions}
           onOptionsChange={handleOptionsChange}
         /> */}

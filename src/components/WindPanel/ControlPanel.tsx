@@ -11,7 +11,7 @@ import NumberInput from './NumberInput.tsx';
 const { Text } = Typography;
 
 // Styled components for compact layout
-const CompactFormItem = styled(Form.Item)`
+export const CompactFormItem = styled(Form.Item)`
   margin-bottom: 8px !important;
   
   .ant-form-item-label {
@@ -50,7 +50,7 @@ const CompactFormItem = styled(Form.Item)`
   }
 `;
 
-const StyledCard = styled(Card)`
+export const StyledCard = styled(Card)`
   .ant-card-head {
     min-height: 40px;
     padding: 0 12px;
@@ -85,7 +85,7 @@ const CollapseButton = styled.div<{ $collapsed: boolean }>`
   }
 `;
 
-const CardContent = styled.div<{ $collapsed: boolean }>`
+export const CardContent = styled.div<{ $collapsed: boolean }>`
   max-height: ${props => props.$collapsed ? '0' : 'calc(100vh - 300px)'};
   overflow: auto;
   transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
@@ -115,7 +115,7 @@ const CardContent = styled.div<{ $collapsed: boolean }>`
   }
 `;
 
-const CardTitle = styled.div`
+export const CardTitle = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -133,7 +133,7 @@ const TitleText = styled.span`
   flex: 1;
 `;
 
-const ControlPanelContainer = styled.div`
+export const ControlPanelContainer = styled.div`
   position: absolute;
   z-index: 1000;
   
